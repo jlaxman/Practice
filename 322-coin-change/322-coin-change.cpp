@@ -16,6 +16,6 @@ public:
         // sort(coins.begin(), coins.end(), greater<int>());
         memset(dp, -1, sizeof dp);
         fun(0, coins, amount);
-        return dp[0][amount]>=10000000? -1:dp[0][amount] ;
+        return dp[0][amount]>=100000? -1:dp[0][amount] ;
     }
 };
