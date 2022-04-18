@@ -1,16 +1,16 @@
 class Solution {
-    private: int dp[12][10007];
-public:
-    int fun(int i, vector<int>& coins, int k){
-        if(k<0) return 1e7;
-        if(i==coins.size() && k==0) return 0;
-        if(i==coins.size() && k>0) return 1e7;
-        if(dp[i][k]!=-1) return dp[i][k];
-        int op1= 1+fun(i, coins, k-coins[i]);
-        int op2= fun(i+1, coins, k);
+//     private: int dp[12][10007];
+// public:
+//     int fun(int i, vector<int>& coins, int k){
+//         if(k<0) return 1e7;
+//         if(i==coins.size() && k==0) return 0;
+//         if(i==coins.size() && k>0) return 1e7;
+//         if(dp[i][k]!=-1) return dp[i][k];
+//         int op1= 1+fun(i, coins, k-coins[i]);
+//         int op2= fun(i+1, coins, k);
        
-        return  dp[i][k]=min(op1, op2);
-    }
+//         return  dp[i][k]=min(op1, op2);
+//     }
 private: int memo[10004];
 
 public:
