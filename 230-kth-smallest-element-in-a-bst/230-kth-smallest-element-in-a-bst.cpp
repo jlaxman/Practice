@@ -10,7 +10,7 @@
  * };
  */
 class Solution {
-int ans=-1;
+private: int ans=-1;
 public: 
     void inorder(TreeNode* root, int k, int& cnt){
         if(!root) return ;
