@@ -11,11 +11,30 @@ public:
        
         return  dp[i][k]=min(op1, op2);
     }
+private: int memo[10004];
+
 public:
     int coinChange(vector<int>& coins, int amount) {
+        memset(memo, -1, sizeof memo);
+        return coinchange(coins, amount); 
+    }
+    int coinchange(vector<int>& coins, int amount) {
         // sort(coins.begin(), coins.end(), greater<int>());
-        memset(dp, -1, sizeof dp);
-        fun(0, coins, amount);
-        return dp[0][amount]>=100000? -1:dp[0][amount] ;
+        // memset(dp, -1, sizeof dp);
+        // fun(0, coins, amount);
+        // return dp[0][amount]>=100000? -1:dp[0][amount] ;
+        
+        if(amount<0) return -1;
+        if(amount==0) return 0;
+        if(memo[amount]!=-1) return memo[amount];
+        int mincount=1e5;
+        for(int c: coins){
+            int ans= coinchange(coins, amount-c);
+            if(ans==-1) continue;
+            mincount= min(1+ans, mincount);
+            
+        }
+        memo[amount]=mincount;
+        return  mincount==1e5?-1: mincount;
     }
 };
