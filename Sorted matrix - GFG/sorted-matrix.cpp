@@ -25,8 +25,8 @@ class Solution {
        int k=0;
       for(int i=0; i<N; i++){
           for(int j=0; j<N; j++){
-              Mat[i][j]=vec[k];
-              k++;
+              Mat[i][j]=vec[k++];
+              
           }
       }
        
