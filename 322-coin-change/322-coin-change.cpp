@@ -24,17 +24,32 @@ public:
         // fun(0, coins, amount);
         // return dp[0][amount]>=100000? -1:dp[0][amount] ;
         
-        if(amount<0) return -1;
-        if(amount==0) return 0;
-        if(memo[amount]!=-1) return memo[amount];
-        int mincount=1e5;
-        for(int c: coins){
-            int ans= coinchange(coins, amount-c);
-            if(ans==-1) continue;
-            mincount= min(1+ans, mincount);
+//         if(amount<0) return -1;
+//         if(amount==0) return 0;
+//         if(memo[amount]!=-1) return memo[amount];
+//         int mincount=1e5;
+//         for(int c: coins){
+//             int ans= coinchange(coins, amount-c);
+//             if(ans==-1) continue;
+//             mincount= min(1+ans, mincount);
+            
+//         }
+//         memo[amount]=mincount;
+//         return  mincount==1e5?-1: mincount;
+        
+        
+        vector<int> Dp(10005, INT_MAX);
+        Dp[0]=0;
+        for(int i=1; i<=amount; i++){
+            int mini=1e5;
+            for(int c: coins){
+                if(c<=i) mini= min(Dp[i-c], mini);
+            }
+            if(mini!=1e5) Dp[i]=1+mini;
+            else Dp[i]=1e5;
             
         }
-        memo[amount]=mincount;
-        return  mincount==1e5?-1: mincount;
+        return Dp[amount]==1e5?-1: Dp[amount];
+        
     }
 };
