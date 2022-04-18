@@ -1,5 +1,5 @@
 class Solution {
-    int dp[12][10007];
+    private: int dp[12][10007];
 public:
     int fun(int i, vector<int>& coins, int k){
         if(k<0) return 1e7;
