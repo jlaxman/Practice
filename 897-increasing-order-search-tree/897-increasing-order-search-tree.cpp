@@ -10,27 +10,24 @@
  * };
  */
 class Solution {
+TreeNode* temp;
 public:
     TreeNode* increasingBST(TreeNode* root) {
-        vector<int> vec;
-        fun(root, vec);
-        TreeNode* temp= NULL;
-        for(int i=vec.size()-1; i>=0; i--){
-            TreeNode* t1= new TreeNode();
-            t1->val=vec[i];
-            t1->right=temp;
-            temp=t1;
-        }
-        return temp;
+        TreeNode* ans= new TreeNode();
+        temp=ans;
+        fun(root);
+        return ans->right;
         
     }
-    void fun(TreeNode* root , vector<int>& vec){
-        if(!root) return ;
+    TreeNode* fun(TreeNode* root ){
+        if(!root) return NULL;
     
-        fun(root->left, vec);
-        vec.push_back(root->val);
-        fun(root->right, vec);
-        return ;
+        fun(root->left);
+        root->left=NULL;
+         temp->right=root;
+        temp=root;
+        fun(root->right);
+        return root;
     }
         
 };
