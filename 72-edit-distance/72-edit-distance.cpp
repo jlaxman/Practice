@@ -18,24 +18,27 @@ public:
     int minDistance(string word1, string word2) {
         memset(dp, -1, sizeof dp);
         
+        
         int x= word1.size();
         int y= word2.size();
-        for(int i=x; i>=0; i-- ){
-           
-            for(int j=y; j>=0; j--){
-                 if(i==x){
-                   dp[x][j]= y-j;
-                     continue;
-                 }
-                 if(j==y){
-                     dp[i][y]=x-i;
-                     continue;
-                 }
-                if(word1[i]!=word2[j]) dp[i][j]=min(1+dp[i+1][j+1], min(1+ dp[i][j+1], 1+dp[i+1][j]));
-                else dp[i][j]=min(dp[i+1][j+1], min(1+ dp[i][j+1], 1+dp[i+1][j]));
-            }
+        vector<int> vec(y+1, 0);
+        for(int i=y; i>=0; i--){
+            vec[i]=y-i;
         }
-        return dp[0][0];
+        
+        for(int i=x-1; i>=0; i-- ){
+               int oneplus=x-(i+1);
+               vec[y]=x-i;
+            for(int j=y-1; j>=0; j--){
+                int temp=vec[j];
+                if(word1[i]!=word2[j]) vec[j]=min(1+oneplus, min(1+ vec[j+1], 1+vec[j]));
+                else vec[j]=oneplus;
+                oneplus=temp;
+            }
+            
+            
+        }
+        return vec[0];
         
         
     }
