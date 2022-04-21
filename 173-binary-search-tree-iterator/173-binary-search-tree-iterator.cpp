@@ -11,27 +11,33 @@
  */
 class BSTIterator {
 public:
-    vector<int> vec;
-    int i;
+    
+    TreeNode* it=NULL;
+    TreeNode* temp;
    void BSIterator(TreeNode* root){
        if(root==NULL) return ;
         BSIterator(root->left);
-        vec.push_back(root->val);
+        it->right=root;
+        it=it->right;
         BSIterator(root->right);
    }
        
     BSTIterator(TreeNode* root) {
-        i=0;
+      
+        temp= new TreeNode();
+        it=temp;
+        
         BSIterator(root);
     }
     
     int next() {
-    
-        return vec[i++];
+        temp=temp->right;
+        return temp->val;
     }
     
     bool hasNext() {
-        return i<vec.size();
+        
+        return temp->right!=NULL? 1: 0;
     }
 };
 
