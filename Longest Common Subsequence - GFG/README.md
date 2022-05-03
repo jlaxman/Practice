@@ -1,5 +1,5 @@
 # Longest Common Subsequence
-## Medium 
+##  Medium 
 <div class="problem-statement">
                 <p></p><p><span style="font-size:18px">Given two sequences, find the length of longest subsequence present in both of them. Both&nbsp;the strings are of uppercase.</span></p>
 
