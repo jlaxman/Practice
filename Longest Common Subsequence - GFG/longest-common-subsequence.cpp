@@ -13,21 +13,24 @@ class Solution
     int lcs(int x, int y, string s1, string s2)
     {
         // your code here
-        vector<vector<int>> dp(x+1, vector<int>(y+1, -1));
+        // vector<vector<int>> dp(x+1, vector<int>(y+1, -1));
+        vector<int> prev(y+1, 0);
+        vector<int> curr(y+1, 0);
         
-        for(int i=0; i<=x; i++){
-            dp[i][y]=0;
-        }
-        for(int j=0; j<=y; j++){
-            dp[x][j]=0;
-        }
+        // for(int i=0; i<=x; i++){
+        //     dp[i][y]=0;
+        // }
+        // for(int j=0; j<=y; j++){
+        //     dp[x][j]=0;
+        // }
         for(int i=x-1; i>=0; i--){
             for(int j=y-1; j>=0; j--){
-                if(s1[i]==s2[j]) dp[i][j]=1+ dp[i+1][j+1];
-                else dp[i][j]=max(dp[i+1][j], dp[i][j+1]);
+                if(s1[i]==s2[j]) curr[j]=1+ prev[j+1];
+                else curr[j]=max(prev[j], curr[j+1]);
             }
+            prev=curr;
         }
-        return dp[0][0];
+        return curr[0];
         
         
     }
