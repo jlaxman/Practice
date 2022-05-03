@@ -13,9 +13,11 @@ class Solution
     {
        // your code here
        vector<int> dp(n+1, -1);
+       
        int mx=0;
        for(int i=0; i<n; i++){
            mx=max(fun(i, a, dp, n), mx);
+        //   cout<<dp[i]<<" ";
        }
        return mx+1;
     }
