@@ -1,6 +1,7 @@
 class Solution {
 public:
     int numSubarrayProductLessThanK(vector<int>& nums, int k) {
+        if(k<=1) return 0;
         int n=nums.size();
         int p=1;
         int j=0;
@@ -14,7 +15,7 @@ public:
             }
         }
         ans+= ((i-j)*(i-j+1)/2);
-        return ans<0? 0: ans;
+        return  ans;
         
     }
 };
