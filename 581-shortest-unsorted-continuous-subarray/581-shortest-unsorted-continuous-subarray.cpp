@@ -20,12 +20,12 @@ public:
         for(int j=high+1;  j<nums.size(); j++){
            if(nums[j]< maxi){
                high++;
-           } 
+           }else break;
         }
         for(int j=low-1;  j>=0; j--){
             if(nums[j]> mini){
                low--;
-           } 
+           }else break; 
         }
         
         return high-low+1;
