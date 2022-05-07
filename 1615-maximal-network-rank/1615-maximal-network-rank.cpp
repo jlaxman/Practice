@@ -1,7 +1,7 @@
 class Solution {
 public:
     int N;
-    int score(int i, int j, vector<vector<int>>& graph, vector<int> deg){
+    int score(int i, int j, vector<vector<int>>& graph, vector<int>& deg){
         int ans=0;
         ans= deg[i]+deg[j];
         if(graph[i][j]){
