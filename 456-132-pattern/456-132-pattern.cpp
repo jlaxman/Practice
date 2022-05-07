@@ -14,7 +14,7 @@ public:
         }
         stack<int> st;
         for(int j=nums.size()-1; j>=1; j--){
-            if(nums[j]<=mini[j]) continue;
+            if(nums[j]==mini[j]) continue;
             else{
                 if(st.empty()){
                     st.push(nums[j]);
