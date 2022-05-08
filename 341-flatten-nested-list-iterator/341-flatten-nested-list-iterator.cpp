@@ -26,7 +26,7 @@ public:
         
     }
     void dfs(vector<NestedInteger>& nestedList){
-       for(auto l: nestedList){
+       for(NestedInteger l: nestedList){
            if(l.isInteger()==false){
                dfs(l.getList());
            }else{
