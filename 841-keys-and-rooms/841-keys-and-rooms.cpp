@@ -75,7 +75,7 @@ bool canVisitAllRooms(vector<vector<int>> rooms) {
        }
        j++;
    }
-   return g.bfs(0);
+   return g.dfs(0);
    
 }
 };
