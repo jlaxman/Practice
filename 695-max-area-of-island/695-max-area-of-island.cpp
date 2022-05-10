@@ -53,15 +53,15 @@ public:
 		}
 	}
 
-	int dfs(int source) {
-		bool* visited = new bool [N];
-		for (int i = 0; i < N; i++) visited[i] = false;
+	pair<int,int> dfs(int source, bool* visited, int prev) {
+		
+		
 		dfs_helper(source, visited);
 		int cnt=0;
 		for(int i=0; i<N; i++ ){
 		    if(visited[i]==true) cnt++;
 		}
-		return cnt;
+		return make_pair(cnt-prev, cnt);
 	}
 
 
@@ -87,12 +87,17 @@ int maxAreaOfIsland(vector<vector<int>> grid)
             }
         }
     }
+    bool* visited= new bool [row*col];
+    for (int i = 0; i < row*col; i++) visited[i] = false;
     int mx=0;
+    int prev=0;
     for(int r=0; r<row; r++){
         for(int c=0; c<col; c++){
-            if(grid[r][c]==1){
-                mx=max(g.dfs(r*col+c), mx);
+            if(grid[r][c]==1 && visited[r*col+c]==0){
+                mx=max(g.dfs(r*col+c, visited, prev).first, mx);
+                prev=g.dfs(r*col+c, visited, prev).second;
             }
+            
         }
     }
     return mx;
