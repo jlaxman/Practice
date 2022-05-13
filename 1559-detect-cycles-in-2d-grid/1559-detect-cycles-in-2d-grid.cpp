@@ -29,7 +29,7 @@ public:
         int dy[4]={1, 0, -1, 0};
         vector<bool> visited(m*n, false);
         
-        vector<vector<int>> adj(m*n, vector<int>());
+        vector<vector<int>> adj(m*n);
         for(int i=0; i<m; i++){
             for(int j=0; j<n; j++){
                  for(int k=0; k<4; k++){
