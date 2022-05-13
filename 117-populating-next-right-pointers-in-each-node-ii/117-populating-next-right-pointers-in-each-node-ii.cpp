@@ -19,7 +19,7 @@ public:
 class Solution {
 public:
     Node* connect(Node* root) {
-        if(!root) return root;
+//         if(!root) return root;
         
        
         Node* curr=root;
