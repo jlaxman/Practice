@@ -1,30 +1,29 @@
 class Solution {
+
+public:    
+    bool dfs(int s, vector<vector<int>>& graph, vector<int>& visited, int color){
+    visited[s]=color;
+    for(int nbr: graph[s]){
+        if(visited[nbr]==0){
+            if(dfs(nbr, graph, visited, 3-color)==false) return false;
+        }
+        else if( visited[nbr]==color){
+            return false;
+        }
+    }
+    return true;
+}   
 public:
     bool isBipartite(vector<vector<int>>& graph) {
-        int n = graph.size();
-        vector<int> color(n, -1);
-
-        for (int start = 0; start < n; ++start) {
-            if (color[start] == -1) {
-                stack<int> stk;
-                stk.push(start);
-                color[start] = 0;
-
-                while (!stk.empty()) {
-                    int node = stk.top();
-                    stk.pop();
-
-                    for (int neigh : graph[node]) {
-                        if (color[neigh] == -1) {
-                            stk.push(neigh);
-                            color[neigh] = color[node] ^ 1;
-                        } else if (color[neigh] == color[node]) {
-                            return false;
-                        }
-                    }
-                }
-            }
+        int n=graph.size();
+        vector<int> visited(n,0);
+        
+        for(int i=0; i<n; i++){
+           if(visited[i]==0){
+               if(dfs(i, graph, visited, 1)==false) return false;
+           }
         }
         return true;
+        
     }
 };
