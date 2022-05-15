@@ -4,7 +4,7 @@ class Solution {
 public:
     int largestPathValue(string s, vector<vector<int>>& edges) {
         int n=s.size();
-        if(edges.size()==0) return 1;
+        // if(edges.size()==0) return 1;
         vector<vector<int>> adj(n);
         vector<int> in(n, 0);
         for(auto e: edges){
@@ -19,7 +19,7 @@ public:
                 dp[i][s[i]-'a']++;
             }
         }
-        int mx=0;
+        int mx=1;
         
         int seen=0;
         while(!q.empty()){
