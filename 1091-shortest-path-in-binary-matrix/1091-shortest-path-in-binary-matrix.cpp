@@ -11,7 +11,7 @@ public:
         
         queue<pair<int, int> > q;
         q.push(make_pair(0, 0));
-        vector<vector<int>> visited(n, vector<int>(n, 1e9));
+        vector<vector<int>> visited(n, vector<int>(n, 0));
         int dx[8]={1, 1, -1, -1, 0, 0, 1, -1};
         int dy[8]={1, -1, 1, -1, 1, -1, 0, 0};
         visited[0][0]=0;
@@ -23,7 +23,7 @@ public:
                 int x= curr.first;
                 int y=curr.second;
                 for(int k=0; k<8; k++){
-                    if(check(x+dx[k], y+dy[k], n) && grid[x+dx[k]][y+dy[k]]==0 && visited[x+dx[k]][y+dy[k]]==1e9){
+                    if(check(x+dx[k], y+dy[k], n) && grid[x+dx[k]][y+dy[k]]==0 && visited[x+dx[k]][y+dy[k]]==0){
                         visited[x+dx[k]][y+dy[k]]=visited[x][y]+1;
                         q.push(make_pair(x+dx[k], y+dy[k]));
                     }
@@ -31,7 +31,7 @@ public:
                 
             }
         }
-        if(visited[n-1][n-1]==1e9) return -1;
+        if(visited[n-1][n-1]==0 && n!=1) return -1;
         return visited[n-1][n-1]+1;
         
     }
