@@ -9,26 +9,20 @@
  */
 
 class Solution {
-
 public:
-    TreeNode* fun(TreeNode* original, TreeNode* cloned, TreeNode* target){
+    TreeNode* getTargetCopy(TreeNode* original, TreeNode* cloned, TreeNode* target) {
         if(original==NULL) return NULL;
         if(original==target){
            
             return cloned;
         }
-        TreeNode* le=fun(original->left, cloned->left, target);
+        TreeNode* le=getTargetCopy(original->left, cloned->left, target);
         
         if(le!=NULL) return le;
-        TreeNode* re=fun(original->right, cloned->right, target);
+        TreeNode* re=getTargetCopy(original->right, cloned->right, target);
         if(re!=NULL) return re;
         return NULL;
         
         
-    }
-public:
-    TreeNode* getTargetCopy(TreeNode* original, TreeNode* cloned, TreeNode* target) {
-        
-        return fun(original, cloned, target);
     }
 };
