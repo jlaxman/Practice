@@ -19,11 +19,14 @@ public:
         return coinchange(coins, amount); 
     }
     int coinchange(vector<int>& coins, int amount) {
+        
+        //2D-DP with indices, k
         // sort(coins.begin(), coins.end(), greater<int>());
         // memset(dp, -1, sizeof dp);
         // fun(0, coins, amount);
         // return dp[0][amount]>=100000? -1:dp[0][amount] ;
         
+        //1D-Memoisation
 //         if(amount<0) return -1;
 //         if(amount==0) return 0;
 //         if(memo[amount]!=-1) return memo[amount];
@@ -37,7 +40,7 @@ public:
 //         memo[amount]=mincount;
 //         return  mincount==1e5?-1: mincount;
         
-        
+        //Bottom-up
         vector<int> Dp(10005, INT_MAX);
         Dp[0]=0;
         for(int i=1; i<=amount; i++){
