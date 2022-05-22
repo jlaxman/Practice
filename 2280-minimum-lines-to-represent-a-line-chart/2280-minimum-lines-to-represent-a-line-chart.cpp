@@ -17,7 +17,7 @@ public:
             long double div=(1.0*(sp[i][1]-sp[i-1][1]));
             long double divi=(1.0*(sp[i][0]-sp[i-1][0]));
             // cout<< div<<" "<<divi<<endl;
-            long double curr= (long double) div/(1.0*divi);
+            long double curr=  div/(1.0*divi);
            
             
             if(curr!=prev) {
