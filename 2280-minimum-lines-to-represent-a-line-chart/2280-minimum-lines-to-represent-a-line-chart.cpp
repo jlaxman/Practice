@@ -14,8 +14,8 @@ public:
         
         for(int i=1; i<n; i++){
             // cout<< sp[i][0]<<" "<<sp[i][1]<<endl;
-            long double div=(1.0*(sp[i][1]-sp[i-1][1]));
-            long double divi=(1.0*(sp[i][0]-sp[i-1][0]));
+            long double div=((sp[i][1]-sp[i-1][1]));
+            long double divi=((sp[i][0]-sp[i-1][0]));
             // cout<< div<<" "<<divi<<endl;
             long double curr=  div/(divi);
            
