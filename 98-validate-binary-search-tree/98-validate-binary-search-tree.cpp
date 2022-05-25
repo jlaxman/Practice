@@ -10,16 +10,25 @@
  * };
  */
 class Solution {
+ private: TreeNode* prev;
  public: 
-    bool check(TreeNode* root, long long l, long long r){
-        if(!root) return true;
+    bool inorder(TreeNode* root){
+       if(!root) return true;
         
-        return (root->val> l) && (root->val <r) && check(root->left, l, root->val) && check(root->right, root->val, r);
+       bool l= inorder(root->left);
+      int m=1;
+      if(prev!=NULL){
+          if(root->val> prev->val){
+              prev=root;
+          }else m=0;
+      }
+      if(prev==NULL) prev=root;
+      return l && m  && inorder(root->right);
+    
     }
 public:
     bool isValidBST(TreeNode* root) {
-        long long l=LONG_MIN;
-        long long r=LONG_MAX;
-        return check(root, l, r);
+         prev=NULL;
+        return inorder(root);
     }
 };
