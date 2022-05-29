@@ -3,8 +3,6 @@ public:
     bool check(int i, int j, int m, int n){
         return (i>=0 && j>=0 && i<m && j<n);
     }
-    
-public:
     class dsu{
         int n;
         vector<int> parent;
