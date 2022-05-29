@@ -66,9 +66,6 @@ public:
         for(int i=0; i<m*n; i++){
             if(grid[i/n][i%n]=='1' && par[i]==-1) cnt++;
         }
-        
-        
-         
         return cnt;
         
     }
