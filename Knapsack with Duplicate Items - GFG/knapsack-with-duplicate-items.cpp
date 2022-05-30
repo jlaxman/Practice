@@ -10,7 +10,12 @@ using namespace std;
 class Solution{
 public:
  int fun(int i, int w, int val[], int wt[],  vector<vector<int>>& dp, int n){
-     if(i==n) return 0;
+     if(i==n){
+        //  if(w==0) return 0;
+        //  else return INT_MIN;
+        return 0;
+     }
+    //  if(w==0 ) return 0;
      if(w<0) return INT_MIN;
      if(dp[i][w]!=-1) return dp[i][w];
      int op1= fun(i+1, w, val, wt, dp, n);
