@@ -1,15 +1,19 @@
 class Solution {
 public:
-    int change(int amt, vector<int>& coins) {
-        vector<int> dp(amt+1, 0);
-        // sort(coins.begin(), coins.end());
-        dp[0]=1;
-        for(auto c: coins){
-            for(int i=c;i<= amt; i++){
-                dp[i]+=dp[i-c];
-            }
+    int fun(int i, vector<int>& coins, vector<vector<int>>& dp, int amt){
+        if(amt<0) return 0;
+        if(i==coins.size()){
+            if(amt==0){
+                return 1;
+            }else return 0;
         }
-        return dp[amt];
+        if(dp[i][amt]!=-1) return dp[i][amt];
+        return dp[i][amt]=fun(i+1, coins, dp, amt)+ fun(i, coins, dp, amt-coins[i]);
+    }
+public:
+    int change(int amt, vector<int>& coins) {
+        vector<vector<int>> dp(coins.size(), vector<int>(amt+1, -1));
+        return fun(0, coins, dp, amt);
         
     }
 };
