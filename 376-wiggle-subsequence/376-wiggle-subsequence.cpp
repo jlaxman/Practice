@@ -32,23 +32,23 @@ public:
         // }
         // return ans;
         
-        vector<int> dph(n, 0);
-        vector<int> dpl(n, 0);
-        dph[n-1]=1;
-        dpl[n-1]=1;
+        // vector<int> dph(n, 0);
+        // vector<int> dpl(n, 0);
+        int dph=1;
+        int dpl=1;
         for(int i=n-2; i>=0; i--){
             if(nums[i]>nums[i+1]){
-                dph[i]= 1+dpl[i+1];
-                dpl[i]=dpl[i+  1];
+                dph= 1+dpl;
+               
             }else if(nums[i]<nums[i+1]){
-                dpl[i]= 1+dph[i+1];
-                dph[i]=dph[i+  1];
+                dpl= 1+dph;
+                
             }else{
-                dph[i]=dph[i+1];
-                dpl[i]=dpl[i+1];
+                // dph[i]=dph[i+1];
+                // dpl[i]=dpl[i+1];
             }
         }
-        return max(dpl[0], dph[0]);
+        return max(dpl, dph);
         
     }
 };
