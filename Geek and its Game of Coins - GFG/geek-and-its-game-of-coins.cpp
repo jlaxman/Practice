@@ -10,9 +10,10 @@ class Solution{
             return 0;
         }
         if(dp[n][p]!=-1) return dp[n][p];
+        
         for(int k: {x, y, 1}){
             if(n-k>=0){
-                if(fun(n-k, x, y, p, dp)==0) return dp[n][p]=1;
+                if(fun(n-k, x, y, 1-p, dp)==0) return dp[n][p]=1;
             }
         }
         return dp[n][p]=0;
