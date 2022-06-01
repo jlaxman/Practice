@@ -7,32 +7,9 @@ class Solution{
     
     int fun(int n, int x, int y, int p, vector<vector<int>>& dp){
         if(n==0){
-            if(p==0) return 0;
-            return 1;
+            return 0;
         }
         if(dp[n][p]!=-1) return dp[n][p];
-        
-        // if(n-x>=0){
-        //     if(p==0){
-        //         if(fun(n-x, x, y, 1-p, dp)==0) return dp[n][p]=1;
-        //     }else{
-        //         if(fun(n-x, x, y, 1-p, dp)==0) return dp[n][p]=1;
-        //     }
-        // }
-        // if(n-y>=0){
-        //     if(p==0){
-        //         if(fun(n-y, x, y, 1-p, dp)==0) return dp[n][p]=1;
-        //     }else{
-        //         if(fun(n-y, x, y, 1-p, dp)==0) return dp[n][p]=1;
-        //     }
-        // }
-       
-        // if(p==0){
-        //     if(fun(n-1, x, y, 1-p, dp)==0) return dp[n][p]=1;
-        // }else{
-        //     if(fun(n-1, x, y, 1-p, dp)==0) return dp[n][p]=1;
-        // }
-        
         for(int k: {x, y, 1}){
             if(n-k>=0){
                 if(fun(n-k, x, y, p, dp)==0) return dp[n][p]=1;
