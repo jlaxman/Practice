@@ -10,40 +10,30 @@
  * };
  */
 class Solution {
-    vector<int> flatten(vector<int>& v1, vector<int>& v2){
-        vector<int> ans;
-        for(auto a: v1){
-            ans.push_back(a);
-        }
-        for(auto a: v2){
-            ans.push_back(a);
-        }
-        return ans;
-    }
-public:
-    vector<int> getLonelyNodes(TreeNode* root) {
-        if(!root) return {};
+    private:
+    vector<int> temp;
+    void fun(TreeNode* root){   
         
-        vector<int> vec;
+        if(!root) return ;
         if(root->right && root->left){
-            auto v1=getLonelyNodes(root->left);
-            auto v2=getLonelyNodes(root->right);
-            return flatten(v1, v2);
-            
+            fun(root->left);
+            fun(root->right); 
         }else if(root->right==NULL && root->left){
-            auto v1=getLonelyNodes(root->left);
-            vector<int> temp;
-            temp.push_back(root->left->val);
-            return flatten(temp, v1);
+            fun(root->left);
+            temp.push_back(root->left->val);    
         }
         else if(root->left==NULL && root->right){
-            auto v1=getLonelyNodes(root->right);
-            vector<int> temp;
+            fun(root->right);
             temp.push_back(root->right->val);
-            return flatten(temp, v1);
         }
-        return vec;
+        return ;
+    }
         
+public:
+    vector<int> getLonelyNodes(TreeNode* root) {
+        temp.clear();
+        fun(root);
+        return temp;
         
     }
 };
