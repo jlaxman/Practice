@@ -11,11 +11,32 @@ class Solution{
         }
         if(dp[n][p]!=-1) return dp[n][p];
         
-        for(int k: {x, y, 1}){
-            if(n-k>=0){
-                if(fun(n-k, x, y, 1-p, dp)==0) return dp[n][p]=1;
+        if(n-x>=0){
+            if(p==0){
+                if(fun(n-x, x, y, 1-p, dp)==0) return dp[n][p]=1;
+            }else{
+                if(fun(n-x, x, y, 1-p, dp)==0) return dp[n][p]=1;
             }
         }
+        if(n-y>=0){
+            if(p==0){
+                if(fun(n-y, x, y, 1-p, dp)==0) return dp[n][p]=1;
+            }else{
+                if(fun(n-y, x, y, 1-p, dp)==0) return dp[n][p]=1;
+            }
+        }
+       
+        if(p==0){
+            if(fun(n-1, x, y, 1-p, dp)==0) return dp[n][p]=1;
+        }else{
+            if(fun(n-1, x, y, 1-p, dp)==0) return dp[n][p]=1;
+        }
+        
+        // for(int k: {x, y, 1}){
+        //     if(n-k>=0){
+        //         if(fun(n-k, x, y, p, dp)==) return dp[n][p]=1;
+        //     }
+        // }
         return dp[n][p]=0;
         
         
