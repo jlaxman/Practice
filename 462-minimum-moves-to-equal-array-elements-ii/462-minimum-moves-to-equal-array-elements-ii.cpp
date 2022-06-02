@@ -3,7 +3,7 @@ public:
     int minMoves2(vector<int>& nums) {
         int n=nums.size();
         sort(nums.begin(), nums.end());
-        vector<long long> prefix(nums.begin(), nums.end());
+        vector<int> prefix(nums.begin(), nums.end());
         for(int i=1;i<n; i++){
             prefix[i]+=prefix[i-1];
         }
