@@ -1,24 +1,43 @@
 class Solution {
 public:
-    int minMoves2(vector<int>& nums) {
-        int n=nums.size();
-        sort(nums.begin(), nums.end());
-        vector<int> prefix(nums.begin(), nums.end());
-        for(int i=1;i<n; i++){
-            prefix[i]+=prefix[i-1];
-        }
-        long long misteps=INT_MAX;
-        for(long long i=0; i<n; i++){
-           long long currsteps=INT_MAX;
-            if(i!=0){
-                currsteps=abs(prefix[i-1]-  i*nums[i])+ abs(prefix[n-1]-prefix[i] -(n-(i+1))*nums[i]);
-                misteps= min(currsteps, misteps);
-            }else{
-                currsteps=abs(prefix[n-1]-prefix[i] -1LL*(n-(i+1))*nums[i]);
-                misteps=min(currsteps, misteps);
+    int partitionIndex(int start, int end, vector<int>& nums){
+        int r= nums[end];
+        int i=start;
+        for(int j=start; j<end; j++){
+            if(nums[j]<=r){
+                swap(nums[i], nums[j]);
+                i++;
             }
         }
-        return misteps;
+        swap(nums[i], nums[end]);
+        return i;
+    }
+    
+public:
+    int quickSelect(int start, int end, int p, vector<int>& nums){
+        
+        if(start==end) return nums[start];
+        
+        int j= partitionIndex(start, end, nums);
+        if(j==p){
+            return nums[j];
+        }else if(j<p){
+            return quickSelect(j+1, end, p, nums);
+        }else{
+            return quickSelect(start, j-1, p, nums);
+        }
+        
+    }
+public:
+    int minMoves2(vector<int>& nums) {
+        int n=nums.size();
+        int m= quickSelect(0, n-1, n/2, nums);
+        cout<< m<<endl;
+        int steps=0;
+        for(auto a: nums){
+            steps+=abs(a-m);
+        }
+        return steps;
         
         
     }
