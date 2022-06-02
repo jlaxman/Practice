@@ -16,7 +16,7 @@ public:
 public:
     int quickSelect(int start, int end, int p, vector<int>& nums){
         
-        if(start==end) return nums[start];
+        // if(start==end) return nums[start];
         
         int j= partitionIndex(start, end, nums);
         if(j==p){
