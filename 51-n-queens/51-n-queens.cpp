@@ -32,8 +32,8 @@ public:
             temp+='.';
         }
         col.resize(n, 0);
-        cross.resize(2*n, 0);
-        across.resize(2*n, 0);
+        cross.resize(2*n-1, 0);
+        across.resize(2*n-1, 0);
        vector<string> ds(n, temp);
        recurseQueens(0,n, ds);
        return ans;
