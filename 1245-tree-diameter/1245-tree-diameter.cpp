@@ -7,14 +7,13 @@ class Solution {
         if(dp[i]!=-1) return dp[i];
         int ans=1;
         int mx=1;
+        int ans1=0;
+        int ans2=0;
        for(auto nbr: adj[i]){
            if(nbr!=parent) ans=1+maxDepth(nbr, adj, i);
            mx=max(ans, mx);
-       }
-        int ans1=0;
-        int ans2=0;
-        for(auto nbr: adj[i]){
-            int d=dp[nbr];
+           
+            int d=ans-1;;
             if(d>= ans1){
                 ans2=ans1;
                 ans1=d;
@@ -23,8 +22,7 @@ class Solution {
                     ans2=d;
                 }
             }
-        }
-        // cout<<i<< " "<<ans1<<" "<<ans2<<endl;
+       }
         maxx= max(maxx, ans1+ans2);
         return dp[i]=mx;
     }
