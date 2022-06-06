@@ -21,7 +21,31 @@ public:
     }
 public:
     bool isPalindrome(ListNode* head) {
-        front=head;
-        return recurseCheck(head);
+       ListNode* fast= head;
+       ListNode* slow= head;
+       if(!head || !head->next) return 1;
+        while(slow && fast && fast->next){
+            slow=slow->next;
+            fast=fast->next->next;
+        }
+        ListNode* middle=slow;
+        ListNode* second=middle;
+        ListNode* dummy=NULL;
+        while(second){
+            ListNode* temp= second->next;
+            second->next=dummy;
+            dummy=second;
+            second=temp;
+        }
+        fast=head;
+        while(dummy){
+            if(fast->val!=dummy->val) return 0;
+            fast=fast->next;
+            dummy=dummy->next;
+        }
+        return 1;
+        
+        
+      
     }
 };
