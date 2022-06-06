@@ -15,8 +15,7 @@ public:
              return dp[i][j][k]=checkInterleave(i, j+1, k+1, l, m, n, s1, s2, s3);
          }
              
-         if(i<l &&  j<m) return dp[i][j][k]=checkInterleave(i+1, j+1, k, l, m, n, s1, s2, s3);
-         
+         if(i<l &&  j<m) return 0;
          return dp[i][j][k]=0;
         
      } 
