@@ -12,14 +12,13 @@ public:
             if(ls==x && ifound==-1){
                 ifound=i;
             }
-            else if(ls==2*x && ifound!=-1 && jfound==-1){
+            else if(ls==2*x && ifound!=-1){
                 jfound=i;
                 break;
             }
         }
         if(jfound==-1 || jfound==arr.size()-1) return 0;
-        else if(ifound< jfound) {
-           return 1; 
-        }else return 0;
+        else return 1; 
+        
     }
 };
