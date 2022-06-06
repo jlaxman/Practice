@@ -7,15 +7,23 @@ public:
              return 1;
          }
          if(dp[i][j][k]!=-1) return dp[i][j][k];
-         if(i< l && j< m && s1[i]==s2[j] && s2[j]==s3[k]){
-             return dp[i][j][k]=(checkInterleave(i+1, j, k+1, l, m, n, s1, s2, s3) || checkInterleave(i, j+1, k+1, l, m, n, s1, s2, s3));
-         }else if(i<l && s1[i]==s3[k]){
-             return dp[i][j][k]=checkInterleave(i+1, j, k+1, l, m, n, s1, s2, s3);
-         }else if(j<m && s2[j]==s3[k]){
-             return dp[i][j][k]=checkInterleave(i, j+1, k+1, l, m, n, s1, s2, s3);
+         if(i==l){
+             return s2.substr(j)==s3.substr(k);
          }
-             
-         if(i<l &&  j<m) return 0;
+         if(j==m){
+             return s1.substr(i)==s3.substr(k);
+         }
+         
+         
+         if(s1[i]==s2[j] && s2[j]==s3[k]){
+             return dp[i][j][k]= (checkInterleave(i+1, j, k+1, l, m, n, s1, s2, s3) ||checkInterleave(i, j+1, k+1, l, m, n, s1, s2, s3));
+         } 
+         if(s2[j]==s3[k]){
+              return dp[i][j][k]= (checkInterleave(i, j+1, k+1, l, m, n, s1, s2, s3));
+         }
+         if(s1[i]==s3[k]){
+             return dp[i][j][k]= (checkInterleave(i+1, j, k+1, l, m, n, s1, s2, s3));
+         }
          return dp[i][j][k]=0;
         
      } 
