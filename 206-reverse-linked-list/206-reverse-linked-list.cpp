@@ -10,14 +10,22 @@
  */
 class Solution {
 public:
-    ListNode* reverseList(ListNode* head) {
-       ListNode* dummy=NULL;
-        while(head!=NULL){
-            ListNode* temp=head->next;
-            head->next=dummy;
-            dummy=head;
-            head=temp;
+    ListNode* temp;
+    void recurseRlist(ListNode* head){
+        if(!head) return ;
+        recurseRlist(head->next);
+        if(head->next==NULL){
+            temp=head;
+        }else{
+           head->next->next=head;
+            head->next=NULL;
         }
-        return dummy;
+    }
+     
+public:
+    ListNode* reverseList(ListNode* head) {
+        temp=NULL;
+        recurseRlist(head);
+        return temp;
     }
 };
