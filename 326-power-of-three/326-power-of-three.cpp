@@ -10,6 +10,6 @@ public:
         int f=(pow(3, p)==n);
         int f1= (pow(3, p+1)==n);
         
-        return f ||f1;
+        return f ;
     }
 };
