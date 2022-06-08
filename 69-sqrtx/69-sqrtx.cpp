@@ -5,7 +5,7 @@ public:
      int r= x;
         long long ans=0;
      while(l<=r){
-         long long mid= (l+r)/2LL;
+         long long mid= (l+r)/2;
          if(mid*mid<=1LL*x){
              ans=max(ans, mid);
              l=mid+1;
