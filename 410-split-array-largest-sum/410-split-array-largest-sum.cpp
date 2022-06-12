@@ -13,7 +13,7 @@ public:
             }
         }
        
-        return (split+1<=m);
+        return (split<=m);
     }
 public:
     int splitArray(vector<int>& nums, int m) {
@@ -28,9 +28,9 @@ public:
         while(l<=r){
             int mid= (l)+((r-l)/2);
             
-            if(predicate(mid, nums, m)){
+            if(predicate(mid, nums, m-1)){
                 r=mid-1;
-                ans=mid;
+                ans=min(ans,mid);
             }else{
                 l=mid+1;
             }  
