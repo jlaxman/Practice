@@ -10,18 +10,19 @@ public:
         int sum=0;
         int mx=0;
         for(int i=0; i<nums.size(); i++ ){
-            if(freq[nums[i]]!=-1){
-                j=max(j,freq[nums[i]]+1);
+            if(freq[nums[i]]==-1){
+                freq[nums[i]]=i;
                 
+            }else{
+                j=max(j, freq[nums[i]]+1);
+                freq[nums[i]]=i;
             }
-            freq[nums[i]]=i;
             if(j!=0){
                     sum= prefix[i]-prefix[j-1];
-            }
-            else{
+                }else{
                     sum=prefix[i];
-            }
-           mx=max(sum, mx);
+                }
+                mx=max(sum, mx);
             
             
         }
