@@ -1,6 +1,5 @@
 class Solution {
 public:
-    int mini=INT_MAX;
     bool predicate(int mid, vector<int>& nums, int m){
         int mx=0;
         int sum=0;
