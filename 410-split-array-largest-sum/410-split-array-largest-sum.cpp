@@ -5,12 +5,12 @@ public:
         int mx=0;
         int sum=0;
         for(int i=0; i<nums.size(); i++){
-            if(nums[i]+sum<= mid){
-                sum+=nums[i];
-            }else{
+            sum+=nums[i];
+            if(sum>mid){
                 sum=nums[i];
                 split++;
             }
+            mx=max(sum, mx); 
         }
        
         return (split<=m);
