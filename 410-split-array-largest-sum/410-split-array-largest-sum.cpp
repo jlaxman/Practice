@@ -12,10 +12,8 @@ public:
             }
             mx=max(sum, mx); 
         }
-        if(m>=0){
-            mini=min(mx, mini);
-        }
-        return m>=0;
+       
+        return (mx<=mid && m>=0);
     }
 public:
     int splitArray(vector<int>& nums, int m) {
@@ -37,7 +35,7 @@ public:
                 l=mid+1;
             }  
         }
-        return mini;
+        return ans;
         
         
         
