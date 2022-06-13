@@ -37,7 +37,7 @@ public:
             }
             vector<string> nbrs= neighbours(curr);
             for(auto nbr: nbrs){
-                if(vis.find(nbr)==vis.end()){
+                if(vis[nbr]==0){
                     vis[nbr]=vis[curr]+1;
                     q.push(nbr);
                 }
