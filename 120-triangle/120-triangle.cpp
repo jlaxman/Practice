@@ -13,7 +13,16 @@ public:
         int m= tri.size();
         vector<vector<int>> dp(m, vector<int>(m, -1));
         
-        return tri[0][0]+minCost(0, 0, m, tri, dp);
+        for(int i=0; i<m; i++){
+            dp[m-1][i]=0;
+        }
+        for(int i=m-2; i>=0; i--){
+            for(int j=i; j>=0; j--){
+                dp[i][j]= min(tri[i+1][j]+dp[i+1][j], tri[i+1][j+1]+dp[i+1][j+1]);
+            }
+        }
+        return tri[0][0]+dp[0][0];
         
+      
     }
 };
