@@ -49,15 +49,50 @@ public:
         int m=rooms.size();
         int n=rooms[0].size();
         // vector<vector<int>> vis(m, vector<int>(n, 0));
+        queue<pair<int,int>> q;
         for(int i=0; i<m; i++){
             for(int j=0; j<n; j++){
                 
                 if(rooms[i][j]==0){ 
-                    bfs(i, j, rooms, m, n);
+                    q.push({i, j});
                 }
                    
             }
         }
+        int dx[4]={1, -1, 0, 0};
+        int dy[4]={0, 0, 1, -1};
+      while(!q.empty()){
+          int sz=q.size();
+          for(int k=0; k<sz; k++){
+              int ix= q.front().first;
+              int jy= q.front().second;
+              q.pop();
+              
+              for(int nbr: {0, 1, 2, 3}){
+                  int x= ix+dx[nbr];
+                  int y= jy+dy[nbr];
+                  if(check(m, n, x, y)  && rooms[x][y]> rooms[ix][jy]+1 ){
+                      rooms[x][y]=rooms[ix][jy]+1;
+                      q.push({x, y});
+                  }   
+                  
+              }
+               
+          }  
+      }
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         return ;
         
         
