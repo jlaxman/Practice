@@ -1,23 +1,18 @@
 class Solution {
 public:
-    int minSteps(int n, vector<int>& ps, int k,  vector<int>& dp){
-        
-        if(k==0) return 0;
-        if(dp[k]!=-1) return dp[k];
-        int ans=INT_MAX;
-        int mini=INT_MAX;
-        for(int j=0; j<n; j++){
-            if(k>=ps[j]){
-                ans= minSteps(n, ps, k-ps[j], dp);
-                if(ans!=INT_MAX){
-                    ans++;
-                    mini=min(ans, mini);
-                } 
-            }
+    int minSteps(int i, int n, vector<int>& ps, int k,  vector<vector<int>>& dp){
+        if(i==n){
+            if(k!=0) return INT_MAX;
+            else return 1;
         }
-        return dp[k]=mini;
-       
-       
+        if(k==0) return 0;
+        if(dp[i][k]!=-1) return dp[i][k];
+        int op1=INT_MAX;
+        int op2=INT_MAX;
+        if(k>= ps[i]) op1= minSteps(i, n, ps, k-ps[i], dp );
+        if(op1!=INT_MAX) op1++;
+        op2=minSteps(i+1, n, ps, k, dp );
+        return dp[i][k]=min(op1, op2);
     }
 public:
     int numSquares(int n) {
@@ -25,9 +20,9 @@ public:
         for(int i=1; i<=sqrt(n); i++){
             ps.push_back(i*i);
         }
-     vector<int> dp(n+1, -1);
+        vector<vector<int>> dp(ps.size()+1, vector<int>(n+1, -1));
         
-        return minSteps(ps.size(), ps, n, dp);
+        return minSteps(0, ps.size(), ps, n, dp);
         
     }
 };
