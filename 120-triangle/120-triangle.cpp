@@ -11,17 +11,19 @@ public:
 public:
     int minimumTotal(vector<vector<int>>& tri) {
         int m= tri.size();
-        vector<vector<int>> dp(m, vector<int>(m, -1));
+        vector<int> dp(m, -1);
         
         for(int i=0; i<m; i++){
-            dp[m-1][i]=0;
+            dp[i]=0;
         }
         for(int i=m-2; i>=0; i--){
+            vector<int> curr(m, 0);
             for(int j=i; j>=0; j--){
-                dp[i][j]= min(tri[i+1][j]+dp[i+1][j], tri[i+1][j+1]+dp[i+1][j+1]);
+                curr[j]= min(tri[i+1][j]+dp[j], tri[i+1][j+1]+dp[j+1]);
             }
+            dp=curr;
         }
-        return tri[0][0]+dp[0][0];
+        return tri[0][0]+dp[0];
         
       
     }
