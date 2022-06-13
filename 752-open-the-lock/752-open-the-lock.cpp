@@ -18,42 +18,33 @@ vector<string> neighbours(string& t){
 }
 public:
     int openLock(vector<string>& deadends, string target) {
-        unordered_set<string> vis;
-         vis.insert("0000");
+        unordered_map<string, int> vis;
+         vis["0000"]=1;
          for(auto t: deadends){
-             vis.insert(t);
+             vis[t]=INT_MAX;
              if(t=="0000") return -1;
          }
         
         queue<string> q;
         q.push("0000");
         int flag=0;
-        int d=0;
-    while(!q.empty()){
-            
-        int sz= q.size();
-        for(int s=0; s<sz; s++){
-                string curr =q.front();
-                q.pop();
-                if(target== curr){
-                   return d;
-                }
+      while(!q.empty()){
+            string curr =q.front();
+            q.pop();
+            if(target== curr){
+                flag=1;
+               break;
+            }
             vector<string> nbrs= neighbours(curr);
             for(auto nbr: nbrs){
                 if(vis.find(nbr)==vis.end()){
-                    vis.insert(nbr);
+                    vis[nbr]=vis[curr]+1;
                     q.push(nbr);
                 }
             }
-
-                
-            
-        }
-        d++;
-            
     }
        
-    return -1;
+    return flag? vis[target]-1: -1;
         
         
         
