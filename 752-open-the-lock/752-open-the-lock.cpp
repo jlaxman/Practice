@@ -19,7 +19,7 @@ vector<string> neighbours(string& t){
 public:
     int openLock(vector<string>& deadends, string target) {
         unordered_map<string, int> vis;
-         vis["0000"]=1;
+         vis["0000"]=0;
          for(auto t: deadends){
              vis[t]=INT_MAX;
              if(t=="0000") return -1;
@@ -44,7 +44,7 @@ public:
             }
     }
        
-    return flag? vis[target]-1: -1;
+    return flag? vis[target]: -1;
         
         
         
