@@ -13,7 +13,7 @@ public:
         stack<int> st;
         for(int i=0; i<tokens.size(); i++){
             
-           if(tokens[i].size()>1 || isdigit(tokens[i][0])){
+           if( tokens[i].size()>1 || (tokens[i][0]-'0'>=0 && tokens[i][0]-'0'<=9)){
                st.push(stoi(tokens[i]));
            }else{
                int a1=st.top();
