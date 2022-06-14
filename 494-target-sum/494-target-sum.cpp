@@ -1,7 +1,7 @@
 class Solution {
 public:
     int cnt;
-    int dp[21][2005];
+    int dp[21][3002];
     int recurse(int i, vector<int>& nums, int t){
         if(i==nums.size()){
             if(t==0){
@@ -9,7 +9,7 @@ public:
             }
             return 0;
         }
-        if(t < -1000 || t>1000) return 0;
+        // if(t < -1000 || t>1000) return 0;
         if(dp[i][1000+t]!=-1) return dp[i][1000+t];
         int op1=recurse(i+1, nums, t+nums[i]);
         int op2=recurse(i+1, nums, t-nums[i]);
