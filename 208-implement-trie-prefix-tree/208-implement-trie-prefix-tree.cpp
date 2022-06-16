@@ -2,7 +2,6 @@
 class Trie {
 public:
     struct node{
-    public:
       string word;
       unordered_map<char, node*> next;
       bool isWord;
