@@ -1,4 +1,7 @@
-class node{
+
+class Trie {
+public:
+    struct node{
     public:
       string word;
       unordered_map<char, node*> next;
@@ -8,8 +11,6 @@ class node{
           isWord=0;
        }
     };
-class Trie {
-public:
     
     node* root;
     Trie() {
