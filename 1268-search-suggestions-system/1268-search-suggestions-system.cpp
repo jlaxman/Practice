@@ -1,56 +1,70 @@
 class Solution {
     struct Node{
         string word;
-        unordered_map<char, Node*> next;
-        set<string> st;
+       vector<Node *> next{vector<Node *> (26, NULL)};
+        bool isend;
         Node(string s){
             word=s;
+            isend=false;
         }
+    
     };
-    Node* root;
-    void insert(string s){
+    void insert(string s, Node* root){
         Node* curr=root;
         string temp;
         for(auto ch: s){
             temp+=ch;
-            if(curr->next.find(ch)== curr->next.end()){
-                curr->next[ch]=new Node(temp);
+            if(curr->next[ch-'a']==NULL){
+                curr->next[ch-'a']=new Node(temp);
             }
-            curr=curr->next[ch];
-            (curr->st).insert(s);
+            curr=curr->next[ch-'a'];
         }
+        curr->isend=true;
     }
-    vector<vector<string>> search(string s){
-        vector<vector<string>> res;
-        Node* curr=root;
-        for(auto ch: s){
-            if(curr->next.find(ch)!=curr->next.end()){
-                curr=curr->next[ch];
-                auto p=curr->st;
-                int t=3;
-                vector<string> ans;
-                while(!p.empty() && t--){
-                    auto it= p.begin();
-                    ans.push_back(*it);
-                    p.erase(it);
-                }
-                res.push_back(ans);  
-            }else{
-                curr->next[ch]= new Node(curr->word+ch);
-                curr=curr->next[ch];
-                res.push_back({});
+    void dfs(Node* cur, vector<string>& ans){
+        if(ans.size()==3){
+            return ;
+        }
+        if(cur==NULL) return ;
+        if(cur->isend){
+            ans.push_back(cur->word);
+        }
+        for(int i=0; i<26; i++){
+            if(cur->next[i]!=NULL){
+                dfs(cur->next[i], ans);
             }
         }
-        return res;
+        return ;
     }
+   
     
 public:
     vector<vector<string>> suggestedProducts(vector<string>& products, string searchWord) {
-        root= new Node("");
-        for(auto p: products){
-            insert(p);
+        int n=products.size();
+        Node* root= new Node("");
+        for(auto pr: products){
+            insert(pr, root);
         }
-        return search(searchWord);
+        Node* cur=root;
+        vector<vector<string>> res;
+        for(auto ch: searchWord){
+            if(cur->next[ch-'a']!=NULL){
+             cur=cur->next[ch-'a'];
+             vector<string> ans;
+             dfs(cur, ans);
+             res.push_back(ans);
+             cout<<ch<<endl;
+            }else{
+                cur->next[ch-'a']=new Node("");
+                cur=cur->next[ch-'a'];
+                res.push_back({});
+            }
+            
+                
+        }
+        
+        
+        return res;
         
         
         
