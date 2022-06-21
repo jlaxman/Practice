@@ -56,22 +56,6 @@ public:
         }
         return 0;
     }
-    bool dfs1(Node* curr, string word){
-        for(int i=0; i<word.size(); i++){
-            if(word[i]=='.'){
-                for(int k=0; k<26; k++){
-                    if(curr->next[k] && dfs1(curr->next[k], word.substr(i+1))) return 1;
-                }
-                return 0;
-            }else{
-                if(curr->next[word[i]-'a']!=NULL){
-                    curr=curr->next[word[i]-'a'];
-                }else return 0;
-            }
-        }
-        return curr->isend;
-        
-    }
 };
 
 /**
