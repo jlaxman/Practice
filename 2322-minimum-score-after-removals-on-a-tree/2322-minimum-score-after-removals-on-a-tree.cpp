@@ -35,7 +35,7 @@ public:
         outTime[curr] = ++currTime;
     }
     bool sameSubtree(int a, int b) {
-        return (inTime[a] <= inTime[b]) && (outTime[b] <= outTime[a]);
+        return (inTime[a] < inTime[b]) && (outTime[b] < outTime[a]);
     }
 public:
     int minimumScore(vector<int>& nums, vector<vector<int>>& edges) {
