@@ -5,19 +5,24 @@ public:
         for(auto ch: s){
             freq[ch-'a']++;
         }
-        unordered_set<int> st;
+        sort(freq.begin(), freq.end(), greater<int>());
         int ans=0;
+        int maxi=freq[0];
         for(int i=0; i<26; i++){
-            if(freq[i]){
-                
-                while(freq[i]>0 && st.find(freq[i])!=st.end()){
-                    freq[i]--;
-                    ans++;
-                }
-                if(freq[i]){
-                    st.insert(freq[i]);
-                }
+            if(freq[i]==0) continue;
+            
+            if(maxi==0){
+                ans+=freq[i];
+                continue;
             }
+            if(freq[i]<=maxi){
+                maxi=freq[i];
+                maxi--;
+            }else{
+                ans+=(freq[i]-maxi);
+                maxi--;
+            }
+            
         }
         return ans;
         
