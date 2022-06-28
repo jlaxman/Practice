@@ -5,23 +5,19 @@ public:
         for(auto ch: s){
             freq[ch-'a']++;
         }
-        priority_queue<int> pq;
+        unordered_set<int> st;
+        int ans=0;
         for(int i=0; i<26; i++){
             if(freq[i]){
-                pq.push(freq[i]);
+                
+                while(freq[i]>0 && st.find(freq[i])!=st.end()){
+                    freq[i]--;
+                    ans++;
+                }
+                if(freq[i]){
+                    st.insert(freq[i]);
+                }
             }
-        }
-        int ans=0;
-        while(!pq.empty()){
-            
-            int val=pq.top();
-            pq.pop();
-            while(!pq.empty() && pq.top()==val){
-                pq.pop();
-                if(val-1) pq.push(val-1);
-                ans++;
-            }
-     
         }
         return ans;
         
