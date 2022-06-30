@@ -14,19 +14,15 @@ public:
     TreeNode* insertIntoBST(TreeNode* root, int val) {
         
         if(root==NULL){
-            root= new TreeNode(val);
-            return root;
+            return new TreeNode(val);
+           
         }
         if(val>root->val){
-            if(root->right!=NULL) insertIntoBST(root->right, val);
-            else{
-                root->right=new TreeNode(val);
-            }
+            root->right=insertIntoBST(root->right, val);
+            
+            
         }else if(val<root->val){
-            if(root->left!=NULL)  insertIntoBST(root->left, val);
-            else{
-                root->left=new TreeNode(val);
-            }
+             root->left=insertIntoBST(root->left, val);
         }
         
         
