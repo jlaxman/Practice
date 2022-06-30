@@ -5,7 +5,10 @@ public:
         // for(int i=31; i>=0; i--){
         //     if(n & (1<<i)) cnt++;
         // }
-        cnt= __builtin_popcount(n);
+        while(n){
+            cnt++;
+            n&=(n-1);
+        }
         
         return cnt;
         
