@@ -35,14 +35,45 @@ public:
     }
 public:
     vector<vector<string>> groupAnagrams(vector<string>& strs) {
-        Node* root= new Node();
-        for(auto s: strs){
-            string t=s;
-            sort(t.begin(), t.end());
-            insert(root, t, s);
-        }
+        // Node* root= new Node();
+        // for(auto s: strs){
+        //     string t=s;
+        //     sort(t.begin(), t.end());
+        //     insert(root, t, s);
+        // }
+        // vector<vector<string>> ans;
+        // dfs(root, ans);
+        // return ans;
+        auto comp=[](auto x, auto y){
+            sort(x.begin(), x.end());
+            sort(y.begin(), y.end());
+            return x<y;
+        };
+        sort(strs.begin(), strs.end(), comp);
         vector<vector<string>> ans;
-        dfs(root, ans);
+        vector<string> ds;
+        vector<int> prev(26, 0);
+        
+        for(auto ch: strs[0]){
+            prev[ch-'a']++;
+        }
+        
+        for(auto s: strs){
+            vector<int> curr(26, 0);
+            for(auto ch: s){
+                curr[ch-'a']++;
+            }
+            if(curr==prev){
+                ds.push_back(s);
+            }else{
+                ans.push_back(ds);
+                ds.clear();
+                ds.push_back(s);
+            }
+            prev=curr;
+            
+        }
+        ans.push_back(ds);
         return ans;
         
     }
