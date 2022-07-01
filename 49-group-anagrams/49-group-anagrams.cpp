@@ -44,36 +44,51 @@ public:
         // vector<vector<string>> ans;
         // dfs(root, ans);
         // return ans;
-        auto comp=[](auto x, auto y){
-            sort(x.begin(), x.end());
-            sort(y.begin(), y.end());
-            return x<y;
-        };
-        sort(strs.begin(), strs.end(), comp);
+        // auto comp=[](auto x, auto y){
+        //     sort(x.begin(), x.end());
+        //     sort(y.begin(), y.end());
+        //     return x<y;
+        // };
+        // sort(strs.begin(), strs.end(), comp);
         vector<vector<string>> ans;
         vector<string> ds;
         vector<int> prev(26, 0);
         
-        for(auto ch: strs[0]){
-            prev[ch-'a']++;
-        }
+//         for(auto ch: strs[0]){
+//             prev[ch-'a']++;
+//         }
         
+//         for(auto s: strs){
+//             vector<int> curr(26, 0);
+//             for(auto ch: s){
+//                 curr[ch-'a']++;
+//             }
+//             if(curr==prev){
+//                 ds.push_back(s);
+//             }else{
+//                 ans.push_back(ds);
+//                 ds.clear();
+//                 ds.push_back(s);
+//             }
+//             prev=curr;
+            
+//         }
+//         ans.push_back(ds);
+        unordered_map<string, vector<string>> mpp;
         for(auto s: strs){
             vector<int> curr(26, 0);
             for(auto ch: s){
                 curr[ch-'a']++;
             }
-            if(curr==prev){
-                ds.push_back(s);
-            }else{
-                ans.push_back(ds);
-                ds.clear();
-                ds.push_back(s);
+            string encode;
+            for(int i=0; i< 26; i++){
+                encode+= ((curr[i]+'0')+'#');
             }
-            prev=curr;
-            
+            mpp[encode].push_back(s);
         }
-        ans.push_back(ds);
+        for(auto m: mpp){
+            ans.push_back(m.second);
+        }
         return ans;
         
     }
