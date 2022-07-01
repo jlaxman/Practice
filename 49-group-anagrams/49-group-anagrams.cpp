@@ -80,10 +80,11 @@ public:
             for(auto ch: s){
                 curr[ch-'a']++;
             }
-            string encode;
-            for(int i=0; i< 26; i++){
-                encode+= ((curr[i]+'0')+'#');
-            }
+            string encode=s;
+           sort(encode.begin(), encode.end());
+            // for(int i=0; i< 26; i++){
+            //     encode+= ((curr[i]+'0')+'#');
+            // }
             mpp[encode].push_back(s);
         }
         for(auto m: mpp){
