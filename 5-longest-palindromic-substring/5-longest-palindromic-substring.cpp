@@ -7,11 +7,14 @@ public:
         string ans;
         int maxl=1;
         ans=s[0];
+        int start=0;
+        
         for(int i=0; i<n; i++) dp[i][i]=1;
         for(int i=0; i<n-1; i++){
             if(s[i]==s[i+1]){
                 dp[i][i+1]=1;
-                ans=s.substr(i, 2);
+                start=i;
+                maxl=2;
             }
         }
         
@@ -22,11 +25,11 @@ public:
                 }
                 if(dp[i][i+l-1] && l>maxl){
                     maxl=l;
-                    ans=s.substr(i, l);
+                    start=i;
                 }
             }
         }
-        return ans;
+        return s.substr(start, maxl);
         
     }
 };
