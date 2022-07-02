@@ -1,43 +1,43 @@
 class Solution {
-private:
-    unordered_map<string, vector<string>> adj;
-    unordered_set<string> st;
-    
 public:
+     unordered_map<string, vector<string>> mpp;
+     unordered_set<string> vis;
     void dfs(string s, vector<string>& vec){
-        st.insert(s);
+        vis.insert(s);
         vec.push_back(s);
-        for(auto nbr: adj[s]){
-            if(st.find(nbr)==st.end()){
+        for(auto nbr: mpp[s]){
+            if(vis.find(nbr)==vis.end()){
                 dfs(nbr, vec);
             }
         }
-        
     }
 public:
-    vector<vector<string>> accountsMerge(vector<vector<string>>& acc) {
-        
-        for(auto a: acc){
-            string first=a[1];
-            for(int i=2; i<a.size(); i++){
-                adj[first].push_back(a[i]);
-                adj[a[i]].push_back(first);
+    vector<vector<string>> accountsMerge(vector<vector<string>>& accounts) {
+       
+        for(auto acc: accounts){
+            string name= acc[0];
+            string fp= acc[1];
+            for(int j=2; j<acc.size(); j++){
+                mpp[acc[1]].push_back(acc[j]);
+                 mpp[acc[j]].push_back(acc[1]);
             }
-        }
-        vector<vector<string>> ans;
-        for(auto a: acc){
-            string name=a[0];
-            string first= a[1];
+       }
+        vector<vector<string>> res;
+        for(auto acc: accounts){
+            string name= acc[0];
+            string fp= acc[1];
             
-            if(st.find(a[1])==st.end()){
+            if(vis.find(fp)==vis.end()){
                 vector<string> vec;
                 vec.push_back(name);
-                dfs(a[1],  vec);
+                dfs(fp, vec);
                 sort(vec.begin()+1, vec.end());
-                ans.push_back(vec);
+                res.push_back(vec); 
             }
-        }
-        return ans;
+       }
+        return res;
+       
+        
         
     }
 };
