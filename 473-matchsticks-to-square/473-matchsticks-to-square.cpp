@@ -2,7 +2,7 @@ class Solution {
 public:
    int recurse(int i, vector<int>& m, int X, int l, int r, int u, int d){
        if(i==m.size()){
-           if(l==r && r==u && u==d && d==X){
+           if(l==r && r==u && u==d){
                return 1;
            }
            return 0;
