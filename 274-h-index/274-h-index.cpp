@@ -11,22 +11,22 @@ public:
         return cnt>=m;
     }
     int hIndex(vector<int>& c) {
-        int l;
-         int r;
-        l=0;
-        r=c.size();
-        int ans=0;
-        while(l<=r){
-            int mid=(l+r)/2;
-            if(predicate(mid, c)){
-                l=mid+1;
-                ans=mid;
-            }else{
-                r=mid-1;
-            }
+//         int l;
+//          int r;
+//         l=0;
+//         r=c.size();
+//         int ans=0;
+//         while(l<=r){
+//             int mid=(l+r)/2;
+//             if(predicate(mid, c)){
+//                 l=mid+1;
+//                 ans=mid;
+//             }else{
+//                 r=mid-1;
+//             }
             
-        }
-        return ans;
+//         }
+//         return ans;
         
         
 //         sort(c.begin(), c.end());
@@ -37,6 +37,39 @@ public:
             
 //         }
 //         return ans;
+        
+        int n=c.size();
+        vector<int> cnt(n+1, 0);
+        for(auto m: c){
+            cnt[min(m, n)]++;
+        }
+        int k=n;
+        int sum=cnt[n];
+        while(k>sum){
+            k--;
+            sum+=cnt[k];
+        }
+        return k;
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         
     }
 };
