@@ -11,8 +11,8 @@ public:
         return cnt>=m;
     }
     int hIndex(vector<int>& c) {
-        int l= *min_element(c.begin(), c.end());
-         int r= *max_element(c.begin(), c.end());
+        int l;
+         int r;
         l=0;
         r=c.size();
         int ans=0;
