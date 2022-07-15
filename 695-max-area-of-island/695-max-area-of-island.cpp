@@ -1,107 +1,24 @@
 class Solution {
 public:
-   class Graph {
-	int N;
-	list<int> *l;
-public:
-	Graph(int v) {
-		N = v;
-		l = new list<int> [v];
-	}
-	void addEdge(int i, int j, bool undir = true) {
-		l[i].push_back(j);
-		if (undir == true) {
-			l[j].push_back(i);
-		}
-	}
-	
-	bool bfs(int s) {
-		queue<int> q;
-// 		cout << s << endl;
-		q.push(s);
-
-		vector<int> visited(N, 1e9);
-		visited[s] = 0;
-
-		while (!q.empty()) {
-			int curr = q.front();
-			q.pop();
-
-			for (int nbr : l[curr]) {
-				if (visited[nbr] == 1e9) {
-					// cout << nbr << endl;
-					visited[nbr] = visited[curr] + 1;
-				// 	cout << nbr << " " << visited[nbr] << endl;
-					q.push(nbr);
-				}
-			}
-		}
-		for(auto c: visited){
-		    if(c==1e9) return false;
-		}
-		return true;
-
-	}
-	void dfs_helper(int source, bool* visited) {
-
-		visited[source] = true;
-// 		cout << source << ',';
-		for (auto nbr : l[source]) {
-			if (visited[nbr] == false) {
-				dfs_helper(nbr, visited);
-			}
-		}
-	}
-
-	pair<int,int> dfs(int source, bool* visited, int prev) {
-		
-		
-		dfs_helper(source, visited);
-		int cnt=0;
-		for(int i=0; i<N; i++ ){
-		    if(visited[i]==true) cnt++;
-		}
-		return make_pair(cnt-prev, cnt);
-	}
-
-
-};
-
-  
-int maxAreaOfIsland(vector<vector<int>> grid)
-{
-    Graph g(grid.size()*grid[0].size());
-    int dx[4]={0, 0, +1, -1};
-    int dy[4]={+1, -1, 0, 0};
-    int row= grid.size();
-    int col=grid[0].size();
-    for(int r=0; r< row; r++){
-        for(int c=0; c<col; c++){
-            if(grid[r][c]==0) continue;
-            for(int k=0; k<4; k++){
-                int R=r+dx[k];
-                int C= c+dy[k];
-                if(R>=0 && R<row && C>=0 && C< col && grid[R][C]==1){
-                    g.addEdge((r*col)+c, (R*col)+C, false);
+    int maxAnswer(int i, int j, int m, int n, vector<vector<int>>& grid){
+        if(i>=m || j>=n || i<0 || j<0 || !grid[i][j]) return 0;
+        grid[i][j]=0;
+        return  1+maxAnswer(i+1, j, m, n, grid)+ maxAnswer(i, j+1, m, n, grid)+maxAnswer(i-1, j, m, n, grid)+maxAnswer(i, j-1, m, n, grid);
+        
+    }
+    int maxAreaOfIsland(vector<vector<int>>& grid) {
+        
+        int m=grid.size();
+        int n=grid[0].size();
+        int ans=0;
+        for(int i=0; i<m; i++){
+            for(int j=0; j<n; j++){
+                if(grid[i][j]==1){
+                    ans=max(ans, maxAnswer(i, j, m, n, grid));
                 }
             }
         }
+        return ans;
+        
     }
-    bool* visited= new bool [row*col];
-    for (int i = 0; i < row*col; i++) visited[i] = false;
-    int mx=0;
-    int prev=0;
-    for(int r=0; r<row; r++){
-        for(int c=0; c<col; c++){
-            if(grid[r][c]==1 && visited[r*col+c]==0){
-                mx=max(g.dfs(r*col+c, visited, prev).first, mx);
-                prev=g.dfs(r*col+c, visited, prev).second;
-            }
-            
-        }
-    }
-    return mx;
-    
-    
-}
 };
