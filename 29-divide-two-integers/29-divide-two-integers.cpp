@@ -12,9 +12,9 @@ public:
             p++;
         }
         if(dividend>divisor) return 0;
-        int power=31;
+       int power=31;
        long long res=0;
-       long long y= ((long long)-1LL* divisor<< 1LL*power);
+       long long y= (-1LL* divisor<< power);
        y=-y;
         while(dividend<= divisor){
             while(y<dividend){
