@@ -1,37 +1,43 @@
 class Solution {
 public:
-    int divide(int dd, int di) {
-        if(dd==INT_MIN && di==-1) return INT_MAX;
-        int HALF_INT_MIN = -1073741824;
+    int divide(int dividend, int divisor) {
+        if(dividend==0) return 0;
         int p=0;
-        if(dd>0){
-            dd=-dd;
-            p++; 
-        }
-        if(di>0){
-            di=-di;
+        if(dividend>0) {
+            dividend= -dividend;
             p++;
         }
-        if(di<dd) return 0;
-        int q=0;
-        while(dd<=di){
-           int cnt=-1;
-           int v=di;
-            while(v>=HALF_INT_MIN && dd<= v+ v){
-                cnt+=cnt;
-                v+=v;
+        if(divisor>0) {
+            divisor= -divisor;
+            p++;
+        }
+        if(dividend>divisor) return 0;
+        int power=31;
+       long long res=0;
+       long long y= ((long long)-1LL* divisor<< 1LL*power);
+       y=-y;
+        while(dividend<= divisor){
+            while(y<dividend){
+                y=y>>1LL;
+                power--;
             }
-            dd-=v;
-            q+=cnt;
+            res+= -(1LL<<power);
+            dividend-=y; 
+        }
+        if(p==1){
+            if(res<INT_MIN){
+                return INT_MIN;
+            }else return res;
             
         }
-        if(p==1) return q;
-        else return -q;
+        else{
+            // cout<<p<<res<<endl;
+            if(-1LL*res>INT_MAX){
+                return INT_MAX;
+            }else return -1*res;
+           
+        }
         
         
-       
-     } 
-      
-        
-    
+    }
 };
