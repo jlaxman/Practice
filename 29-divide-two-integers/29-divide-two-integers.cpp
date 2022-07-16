@@ -21,7 +21,7 @@ public:
                 y=y>>1LL;
                 power--;
             }
-            res+= -(1LL<<power);
+            res-= (1LL<<power);
             dividend-=y; 
         }
         if(p==1){
