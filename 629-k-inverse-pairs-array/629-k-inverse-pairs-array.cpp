@@ -25,15 +25,10 @@ public:
             dp[i][0]=1;
         }
         for(int i=1; i<=n; i++){
-            
             for(int m=1; m<=k; m++){
-                
-                
-                
                  int val = (dp[i - 1][m] + mod- ((m - i) >= 0 ? dp[i - 1][m - i] : 0)) % mod;
-                    dp[i][m] = (dp[i][m - 1] + val) % mod;
-            }
-            
+                 dp[i][m] = (dp[i][m - 1] + val) % mod;
+            } 
         }
         
         
