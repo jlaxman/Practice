@@ -36,6 +36,7 @@ public:
                 
                 while(ss>>word){
                     res+=word;
+                    if(res.size()==mW) break;
                     res+=' ';
                     for(int k=0; k<ns; k++){
                         res+=' ';
@@ -45,9 +46,9 @@ public:
                         rs--;
                     }
                 }
-                while(res.size()>mW){
-                    res.pop_back();
-                }
+                // while(res.size()>mW){
+                //     res.pop_back();
+                // }
                 ans.push_back(res);
                 s.clear();   
             }
