@@ -9,10 +9,7 @@ public:
         unordered_set<string> st;
         for(auto w: words){
             
-            if(st.find(w)!=st.end()){
-                cnt++;
-                continue;
-            }
+            
             int flag=0;
             int prev=-1;
             for(auto ch: w){
@@ -31,7 +28,7 @@ public:
             }
             if(flag==0){
                 // cout<< w<<endl;
-                st.insert(w);
+                // st.insert(w);
                 cnt++;
             }
             
