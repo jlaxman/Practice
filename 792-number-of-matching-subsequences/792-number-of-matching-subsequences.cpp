@@ -6,7 +6,6 @@ public:
             q[s[i]-'a'].push_back(i);
         }
         int cnt=0;
-        unordered_set<string> st;
         for(auto w: words){
             
             
@@ -27,8 +26,6 @@ public:
                 }
             }
             if(flag==0){
-                // cout<< w<<endl;
-                // st.insert(w);
                 cnt++;
             }
             
