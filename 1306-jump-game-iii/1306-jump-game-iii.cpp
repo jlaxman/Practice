@@ -4,7 +4,7 @@ public:
     unordered_set<int> st;
     int reachable(int i, vector<int>& arr){
         if(arr[i]==0) return 1;
-        // if(dp[i]!=-1) return dp[i];
+        if(dp[i]!=-1) return dp[i];
         if(st.find(i)!=st.end()) return dp[i]=0;
         st.insert(i);
         if(i+arr[i]< arr.size()){
